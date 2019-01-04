@@ -10,7 +10,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/jwilder/docker-gen"
+	"github.com/coderedcorp/docker-gen"
 )
 
 type stringslice []string
@@ -68,7 +68,7 @@ Environment Variables:
   DOCKER_CERT_PATH - directory path containing key.pem, cert.pem and ca.pem
   DOCKER_TLS_VERIFY - enable client TLS verification
 `)
-	println(`For more information, see https://github.com/jwilder/docker-gen`)
+	println(`For more information, see https://github.com/coderedcorp/docker-gen`)
 }
 
 func loadConfig(file string) error {

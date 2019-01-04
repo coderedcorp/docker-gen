@@ -1,3 +1,45 @@
+docker-gen (built with go 1.11)
+=====
+
+Forked from jwilder/docker-gen.
+
+To build:
+
+1. Install Go 1.11.
+```
+$ wget https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz
+$ sudo tar -C /usr/local -xzf go1.11.4.linux-amd64.tar.gz
+$ sudo ln -s /usr/local/go/bin/* /usr/local/bin/
+```
+
+2. Install glock and add go downloads to path.
+```
+$ go get github.com/robfig/glock
+$ export PATH=$PATH:~/go/bin/
+```
+
+3. Install dockger-gen (this seems a bit recursive, but I don't really know go that well)
+```
+$ go get github.com/coderedcorp/docker-gen
+```
+
+4. Now you can build. This will create a binary `docker-gen` in the current directory.
+```
+make get-deps
+make
+```
+
+5. To publish, make sure to tag the repo (the version is pulled from the tag). Then run:
+```
+make release
+```
+which will build for all architectures. Upload the archives to the github release.
+
+Original readme below.
+
+---
+
+
 docker-gen
 =====
 
@@ -363,7 +405,7 @@ For example, this is a JSON version of an emitted RuntimeContainer struct:
 * *`json $value`*: Returns the JSON representation of `$value` as a `string`.
 * *`keys $map`*: Returns the keys from `$map`. If `$map` is `nil`, a `nil` is returned. If `$map` is not a `map`, an error will be thrown.
 * *`last $array`*: Returns the last value of an array.
-* *`parseBool $string`*: parseBool returns the boolean value represented by the string. It accepts 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False. Any other value returns an error. Alias for [`strconv.ParseBool`](http://golang.org/pkg/strconv/#ParseBool) 
+* *`parseBool $string`*: parseBool returns the boolean value represented by the string. It accepts 1, t, T, TRUE, true, True, 0, f, F, FALSE, false, False. Any other value returns an error. Alias for [`strconv.ParseBool`](http://golang.org/pkg/strconv/#ParseBool)
 * *`replace $string $old $new $count`*: Replaces up to `$count` occurences of `$old` with `$new` in `$string`. Alias for [`strings.Replace`](http://golang.org/pkg/strings/#Replace)
 * *`sha1 $string`*: Returns the hexadecimal representation of the SHA1 hash of `$string`.
 * *`split $string $sep`*: Splits `$string` into a slice of substrings delimited by `$sep`. Alias for [`strings.Split`](http://golang.org/pkg/strings/#Split)
