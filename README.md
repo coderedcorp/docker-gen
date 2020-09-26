@@ -1,43 +1,51 @@
-docker-gen (built with go 1.11)
-=====
+docker-gen (built with Go 1.15)
+===============================
 
-Forked from jwilder/docker-gen.
+Originally forked from jwilder/docker-gen. This fork is supported and maintained
+by CodeRed for production use.
 
-To build:
+## Environment Setup & Build
 
-1. Install Go 1.11.
-```
-$ wget https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz
-$ sudo tar -C /usr/local -xzf go1.11.4.linux-amd64.tar.gz
-$ sudo ln -s /usr/local/go/bin/* /usr/local/bin/
-```
+Environment requires a Linux (or WSL) OS.
 
-2. Install glock and add go downloads to path.
-```
-$ go get github.com/robfig/glock
-$ export PATH=$PATH:~/go/bin/
-```
+1. Install Go 1.15.
 
-3. Install dockger-gen (this seems a bit recursive, but I don't really know go that well)
-```
-$ go get github.com/coderedcorp/docker-gen
-```
+   ```
+   $ wget -O golang.tar.gz https://golang.org/dl/go1.15.2.linux-amd64.tar.gz
+   $ sudo tar -C /usr/local -xzf golang.tar.gz
+   $ sudo ln -s /usr/local/go/bin/* /usr/local/bin/
+   ```
+
+   Confirm it is installed with:
+
+   ```
+   $ go version
+   ```
+
+2. Add Go bin to PATH.
+
+   ```
+   $ export PATH=$PATH:~/go/bin/
+   ```
+
+3. Clone this repo, and enter the project directory.
 
 4. Now you can build. This will create a binary `docker-gen` in the current directory.
-```
-make get-deps
-make
-```
+
+   ```
+   make get-deps
+   make
+   ```
 
 5. To publish, make sure to tag the repo (the version is pulled from the tag). Then run:
 ```
 make release
 ```
-which will build for all architectures. Upload the archives to the github release.
+which will build for all architectures. Upload the archives to the GitHub release.
 
 Original readme below.
 
----
+----
 
 
 docker-gen
@@ -493,4 +501,3 @@ $ make
 ### License
 
 MIT
-
