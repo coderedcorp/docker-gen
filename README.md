@@ -1,6 +1,8 @@
 docker-gen (built with Go 1.15)
 ===============================
 
+[![Build Status](https://dev.azure.com/coderedcorp/cr-github/_apis/build/status/docker-gen?branchName=master)](https://dev.azure.com/coderedcorp/cr-github/_build/latest?definitionId=14&branchName=master)
+
 Originally forked from https://github.com/jwilder/docker-gen. This fork is
 supported and maintained by CodeRed for production use.
 
