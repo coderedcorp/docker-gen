@@ -1,0 +1,38 @@
+trigger:
+ - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+
+- task: GoTool@0
+  inputs:
+    version: "1.15.*"
+
+- script: |
+    echo "##vso[task.prependpath]/home/vsts/go/bin"
+    go env
+  displayName: "Go environment"
+
+- script: make get-deps
+  displayName: "Install deps"
+
+- script: make all
+  displayName: "Build"
+
+- script: make check-gofmt
+  displayName: "Lint"
+
+- script: make test
+  displayName: "Test"
+
+- script: make dist
+  displayName: "Build dist"
+
+- task: Docker@2
+  displayName: "Build docker"
+  inputs:
+    command: build
+    buildContext: ./
+    Dockerfile: ./Dockerfile
