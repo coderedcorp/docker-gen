@@ -32,18 +32,33 @@ Environment requires a Linux (or WSL) OS.
 
 3. Clone this repo, and enter the project directory.
 
-4. Now you can build. This will create a binary `docker-gen` in the current directory.
+4. Now you can build. This will create a binary `docker-gen` in the current
+   directory.
 
    ```
    make get-deps
    make
    ```
 
-5. To publish, make sure to tag the repo (the version is pulled from the tag). Then run:
-```
-make release
-```
-which will build for all architectures. Upload the archives to the GitHub release.
+5. To publish, make sure to tag the repo (the version is pulled from the tag).
+   Then run:
+
+   ```
+   make release
+   ```
+
+   which will build for all architectures. Upload the archives to the GitHub
+   release.
+
+6. To publish on docker hub: build, tag, and push the image:
+
+   ```
+   tag=$(git describe --tags)
+   docker build --pull -t coderedcorp/docker-gen:${tag} .
+   docker tag coderedcorp/docker-gen:${tag} coderedcorp/docker-gen:latest
+   docker push coderedcorp/docker-gen:${tag}
+   docker push coderedcorp/docker-gen:latest
+   ```
 
 Original readme below.
 
